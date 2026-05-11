@@ -19,14 +19,17 @@ This file serves as the persistent context for design decisions, architecture, a
 
 - **APIs:** FastAPI /predict endpoint, health checks, S3 artifact retrieval.
 - **Constraints:** Lightweight model suitable for edge devices, low‑latency inference, clean separation of backend/frontend/edge components.
+- **Training Dataset:** Kaggle State Farm Distracted Driver Detection
 
 ## Active Context
 
-- **Current Task:** Establishing the project’s persistent memory bank file.
+- **Current Task:** Preparing exploration notebooks.
 - **Recent Changes:** Initial creation of project brief, technical context, and structure.
 - **Next Steps:**
 
     - Define model training pipeline.
+        - Exploration notebooks
+        - Processing, training, and util files
     - Draft FastAPI service structure.
     - Outline AWS deployment workflow.
     - Begin edge inference design.
@@ -43,6 +46,6 @@ This file serves as the persistent context for design decisions, architecture, a
 
 - **Evolving Decisions:**
 
-    - Dataset selection for driver behavior classification.
+    - Model selection for driver behavior classification.
     - Choice of edge device (Raspberry Pi vs simulated environment).
     - Deployment strategy (Docker vs systemd).
