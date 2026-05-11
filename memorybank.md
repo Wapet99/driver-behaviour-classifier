@@ -12,7 +12,7 @@ This file serves as the persistent context for design decisions, architecture, a
 - **Architecture:**
 
     - **Model:** Model training pipeline producing PyTorch and ONNX artifacts. Lightweight PyTorch CNN or MobileNetV3 trained to classify driver actions.
-    - **Backend:** FastAPI inference server with async endpoints, model pulled from S3, structured logging to CloudWatch.
+    - **Backend:** FastAPI inference server with async endpoints, S3-hosted model weights, CloudWatch logging.
     - **Infra:** AWS EC2 deployment using systemd or Docker + Nginx reverse proxy.
     - **Frontend:** Minimal React dashboard to upload images for real‑time inference.
     - **Edge:** Edge inference module using quantized ONNX model.
@@ -23,16 +23,37 @@ This file serves as the persistent context for design decisions, architecture, a
 
 ## Active Context
 
-- **Current Task:** Preparing exploration notebooks.
-- **Recent Changes:** Initial creation of project brief, technical context, and structure.
+- **Current Task:** Preparing model comparison notebook and training script.
+- **Recent Changes:**
+    - Added full data exploration notebook template.
+    - Implemented dataset.py and preprocessing pipeline.
+    - Added model comparison notebook plan and full template.
+    - Added training script scaffold (train.py).
 - **Next Steps:**
-
-    - Define model training pipeline.
-        - Exploration notebooks
-        - Processing, training, and util files
+    - Implement ONNX export + quantization notebook.
     - Draft FastAPI service structure.
     - Outline AWS deployment workflow.
     - Begin edge inference design.
+
+### Working directory
+```
+|   memorybank.md
+|   README.md
+|   .gitignore
++-- backend
+|       README.md
++-- frontend
+|       README.md
++-- infra
+|       README.md
+\-- model
+    |   dataset.py
+    |   README.md
+    |   train.py
+    \-- notebooks
+        |    data_exploration.ipynb
+        |    model_comparison.ipynb
+```
 
 ## Progress
 
@@ -41,11 +62,16 @@ This file serves as the persistent context for design decisions, architecture, a
     - Project concept defined.
     - Repository structure drafted.
     - Memory bank initialised.
+    - Data exploration notebook template created.
+    - Dataset class and transforms implemented.
+    - Model comparison notebook plan + template created.
+    - Training script scaffold created.
 
-- **Blockers:** None at this stage.
+- **Blockers:** Pytorch version issue.
 
 - **Evolving Decisions:**
 
     - Model selection for driver behavior classification.
     - Choice of edge device (Raspberry Pi vs simulated environment).
     - Deployment strategy (Docker vs systemd).
+    - ONNX quantization approach (dynamic vs QAT).
