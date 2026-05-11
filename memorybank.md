@@ -37,22 +37,28 @@ This file serves as the persistent context for design decisions, architecture, a
 
 ### Working directory
 ```
-|   memorybank.md
-|   README.md
-|   .gitignore
-+-- backend
-|       README.md
-+-- frontend
-|       README.md
-+-- infra
-|       README.md
-\-- model
-    |   dataset.py
-    |   README.md
-    |   train.py
-    \-- notebooks
-        |    data_exploration.ipynb
-        |    model_comparison.ipynb
+driver-behaviour-classifier/
+│
+├── backend/
+│   └── README.md
+│
+├── frontend/
+│   └── README.md
+│
+├── infra/
+│   └── README.md
+│
+├── model/
+│   ├── dataset.py
+│   ├── README.md
+│   ├── train.py
+│   └── notebooks/
+│       ├── data_exploration.ipynb
+│       └── model_comparison.ipynb
+│
+├── memorybank.md
+├── README.md
+└── .gitignore
 ```
 
 ## Progress
@@ -62,12 +68,12 @@ This file serves as the persistent context for design decisions, architecture, a
     - Project concept defined.
     - Repository structure drafted.
     - Memory bank initialised.
-    - Data exploration notebook template created.
+    - Data exploration notebook created.
     - Dataset class and transforms implemented.
-    - Model comparison notebook plan + template created.
+    - Model comparison notebook created.
     - Training script scaffold created.
 
-- **Blockers:** Pytorch version issue.
+- **Blockers:** None.
 
 - **Evolving Decisions:**
 
