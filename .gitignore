@@ -12,6 +12,9 @@ wheels/
 # Data files
 model/data/*
 
-# uv files
-pyproject.toml
-uv.lock
+# Training artifacts
+model/checkpoints/*
+model/runs/*
+*.pth
+*.pt
+*.ckpt

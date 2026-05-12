@@ -23,14 +23,13 @@ This file serves as the persistent context for design decisions, architecture, a
 
 ## Active Context
 
-- **Current Task:** Preparing model comparison notebook and training script.
+- **Current Task:** Implement ONNX export and quantisation notebook.
 - **Recent Changes:**
-    - Added full data exploration notebook template.
-    - Implemented dataset.py and preprocessing pipeline.
-    - Added model comparison notebook plan and full template.
-    - Added training script scaffold (train.py).
+    - Implemented train.py as key model training script
+    - Implemented projectmodels.py to house different final models
+    - Created custom MiniCNN model with depthwise separable convolutions.
+    - Updated model_comparison.ipynb to use well trained models for evaluation.
 - **Next Steps:**
-    - Implement ONNX export + quantization notebook.
     - Draft FastAPI service structure.
     - Outline AWS deployment workflow.
     - Begin edge inference design.
@@ -50,6 +49,7 @@ driver-behaviour-classifier/
 │
 ├── model/
 │   ├── dataset.py
+│   ├── projectmodels.py
 │   ├── README.md
 │   ├── train.py
 │   └── notebooks/
