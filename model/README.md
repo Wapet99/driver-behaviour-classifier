@@ -18,6 +18,7 @@ Data has been pre-separated into test and train
 ## Notebooks
 data_exploration
 model_comparison
+onnx_export_and_quant.ipynb
 
 ## Model Comparison details
 Models were trained for up to 20 epochs, with checkpoints and early stop if validation accuracy failed to improve for 5 epochs in a row.  

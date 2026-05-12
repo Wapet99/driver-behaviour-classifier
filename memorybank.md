@@ -23,14 +23,11 @@ This file serves as the persistent context for design decisions, architecture, a
 
 ## Active Context
 
-- **Current Task:** Implement ONNX export and quantisation notebook.
+- **Current Task:** Draft FastAPI service structure.
 - **Recent Changes:**
-    - Implemented train.py as key model training script
-    - Implemented projectmodels.py to house different final models
-    - Created custom MiniCNN model with depthwise separable convolutions.
-    - Updated model_comparison.ipynb to use well trained models for evaluation.
+    - Implemented onnx_export_and_quant.ipynb to export MiniCNN model to ONNX, including quantised to int8 to allow for running on a tiny microprocessor.
+    - ONNX files saved in model/onnx
 - **Next Steps:**
-    - Draft FastAPI service structure.
     - Outline AWS deployment workflow.
     - Begin edge inference design.
 
@@ -52,9 +49,15 @@ driver-behaviour-classifier/
 │   ├── projectmodels.py
 │   ├── README.md
 │   ├── train.py
-│   └── notebooks/
-│       ├── data_exploration.ipynb
-│       └── model_comparison.ipynb
+│   ├── data/
+│   ├── checkpoints/
+│   ├── runs/
+│   ├── notebooks/
+│   |   ├── data_exploration.ipynb
+│   |   └── model_comparison.ipynb
+│   └── onnx/
+│       ├── minicnn.onnx
+│       └── minicnn_int8.onnx
 │
 ├── memorybank.md
 ├── README.md
@@ -72,12 +75,14 @@ driver-behaviour-classifier/
     - Dataset class and transforms implemented.
     - Model comparison notebook created.
     - Training script scaffold created.
+    - Training script completed
+    - Trained 5 models, including 1 custom.
+    - Created notebook to export MiniCNN model to ONNX and compare.
 
 - **Blockers:** None.
 
 - **Evolving Decisions:**
 
-    - Model selection for driver behavior classification.
     - Choice of edge device (Raspberry Pi vs simulated environment).
     - Deployment strategy (Docker vs systemd).
     - ONNX quantization approach (dynamic vs QAT).
