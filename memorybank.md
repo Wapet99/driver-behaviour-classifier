@@ -27,6 +27,7 @@ This file serves as the persistent context for design decisions, architecture, a
 - **Recent Changes:**
     - Implemented FastAPI service structure.
     - Implemented preprocessing.py and postprocessing.py
+    - Implemented onnx_loader.py and inference.py
 - **Next Steps:**
     - Outline AWS deployment workflow.
     - Begin edge inference design.
