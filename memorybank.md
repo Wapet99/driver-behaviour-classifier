@@ -23,7 +23,7 @@ This file serves as the persistent context for design decisions, architecture, a
 
 ## Active Context
 
-- **Current Task:** Implement FastAPI backend core services (core, utils, models)
+- **Current Task:** EC2 deployment using docker + nginx
 - **Recent Changes:**
     - Implemented FastAPI service structure.
     - Implemented preprocessing.py and postprocessing.py
