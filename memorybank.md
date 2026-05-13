@@ -21,6 +21,34 @@ This file serves as the persistent context for design decisions, architecture, a
 - **Constraints:** Lightweight model suitable for edge devices, low‑latency inference, clean separation of backend/frontend/edge components.
 - **Training Dataset:** Kaggle State Farm Distracted Driver Detection
 
+### Backend Runtime Conventions
+- Backend runs inside Docker with `WORKDIR=/app`.
+- Application code is copied into `/app/app`
+- Local model path inside container: `/app/app/tmp/model.onnx`.
+- Model loading strategy:
+- Check local file
+- If missing, attempt async S3 download
+- Logging uses JSON format for CloudWatch compatibility.
+- All API endpoints are async.
+
+### Model Artifacts
+- Primary model: `minicnn_int8.onnx` (quantised).
+- Input shape: `(1, 3, 224, 224)` (RGB, normalised).
+- Preprocessing: resize → center crop → normalise (mean/std).
+- Output: logits for 10 driver‑behaviour classes.
+- Class mapping stored in `postprocessing.py`.
+
+### Backend Environment Variables
+- `ENV` — local | production
+- `DEBUG` — enable verbose logging
+- `LOG_LEVEL` — INFO/DEBUG
+- `MODEL_LOCAL_PATH` — path to ONNX model inside container
+- `S3_MODEL_BUCKET` — bucket for model artifacts
+- `S3_MODEL_KEY` — key for ONNX model
+- `AWS_REGION` — region for S3 access
+
+Local dev uses dummy AWS credentials; EC2 uses IAM role.
+
 ## Active Context
 
 - **Current Task:** EC2 deployment using docker + nginx
@@ -127,5 +155,8 @@ driver-behaviour-classifier/
 
 - **Evolving Decisions:**
 
+    - Frontend deployment via S3/CloudFront or EC2
+    - Whether to use Docker Compose for EC2 Deployment
+    - Nginx or AWS ALB for reverse proxy
     - Choice of edge device (Raspberry Pi vs simulated environment).
     - Design of frontend UI
