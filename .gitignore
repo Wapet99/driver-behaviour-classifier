@@ -11,3 +11,12 @@ wheels/
 
 # Data files
 model/data/*
+
+# Training artifacts
+model/checkpoints/*
+model/runs/*
+model/onnx/*
+*.pth
+*.pt
+*.ckpt
+*.onnx

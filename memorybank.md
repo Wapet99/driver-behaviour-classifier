@@ -12,24 +12,57 @@ This file serves as the persistent context for design decisions, architecture, a
 - **Architecture:**
 
     - **Model:** Model training pipeline producing PyTorch and ONNX artifacts. Lightweight PyTorch CNN or MobileNetV3 trained to classify driver actions.
-    - **Backend:** FastAPI inference server with async endpoints, model pulled from S3, structured logging to CloudWatch.
+    - **Backend:** FastAPI inference server with async endpoints, S3-hosted model weights, CloudWatch logging.
     - **Infra:** AWS EC2 deployment using systemd or Docker + Nginx reverse proxy.
     - **Frontend:** Minimal React dashboard to upload images for real‑time inference.
     - **Edge:** Edge inference module using quantized ONNX model.
 
 - **APIs:** FastAPI /predict endpoint, health checks, S3 artifact retrieval.
 - **Constraints:** Lightweight model suitable for edge devices, low‑latency inference, clean separation of backend/frontend/edge components.
+- **Training Dataset:** Kaggle State Farm Distracted Driver Detection
 
 ## Active Context
 
-- **Current Task:** Establishing the project’s persistent memory bank file.
-- **Recent Changes:** Initial creation of project brief, technical context, and structure.
+- **Current Task:** Draft FastAPI service structure.
+- **Recent Changes:**
+    - Implemented onnx_export_and_quant.ipynb to export MiniCNN model to ONNX, including quantised to int8 to allow for running on a tiny microprocessor.
+    - ONNX files saved in model/onnx
 - **Next Steps:**
-
-    - Define model training pipeline.
-    - Draft FastAPI service structure.
     - Outline AWS deployment workflow.
     - Begin edge inference design.
+
+### Working directory
+```
+driver-behaviour-classifier/
+│
+├── backend/
+│   └── README.md
+│
+├── frontend/
+│   └── README.md
+│
+├── infra/
+│   └── README.md
+│
+├── model/
+│   ├── dataset.py
+│   ├── projectmodels.py
+│   ├── README.md
+│   ├── train.py
+│   ├── data/
+│   ├── checkpoints/
+│   ├── runs/
+│   ├── notebooks/
+│   |   ├── data_exploration.ipynb
+│   |   └── model_comparison.ipynb
+│   └── onnx/
+│       ├── minicnn.onnx
+│       └── minicnn_int8.onnx
+│
+├── memorybank.md
+├── README.md
+└── .gitignore
+```
 
 ## Progress
 
@@ -38,11 +71,18 @@ This file serves as the persistent context for design decisions, architecture, a
     - Project concept defined.
     - Repository structure drafted.
     - Memory bank initialised.
+    - Data exploration notebook created.
+    - Dataset class and transforms implemented.
+    - Model comparison notebook created.
+    - Training script scaffold created.
+    - Training script completed
+    - Trained 5 models, including 1 custom.
+    - Created notebook to export MiniCNN model to ONNX and compare.
 
-- **Blockers:** None at this stage.
+- **Blockers:** None.
 
 - **Evolving Decisions:**
 
-    - Dataset selection for driver behavior classification.
     - Choice of edge device (Raspberry Pi vs simulated environment).
     - Deployment strategy (Docker vs systemd).
+    - ONNX quantization approach (dynamic vs QAT).
