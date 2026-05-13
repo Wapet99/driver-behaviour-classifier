@@ -23,10 +23,10 @@ This file serves as the persistent context for design decisions, architecture, a
 
 ## Active Context
 
-- **Current Task:** Draft FastAPI service structure.
+- **Current Task:** Implement FastAPI backend core services (core, utils, models)
 - **Recent Changes:**
-    - Implemented onnx_export_and_quant.ipynb to export MiniCNN model to ONNX, including quantised to int8 to allow for running on a tiny microprocessor.
-    - ONNX files saved in model/onnx
+    - Implemented FastAPI service structure.
+    - Implemented preprocessing.py and postprocessing.py
 - **Next Steps:**
     - Outline AWS deployment workflow.
     - Begin edge inference design.
@@ -36,7 +36,41 @@ This file serves as the persistent context for design decisions, architecture, a
 driver-behaviour-classifier/
 │
 ├── backend/
-│   └── README.md
+|   ├── app/
+|   │   ├── api/
+|   │   │   ├── v1/
+|   │   │   │   ├── predict.py
+|   │   │   │   └── health.py
+|   │   │   └── __init__.py
+|   │   │
+|   │   ├── core/
+|   │   │   ├── config.py
+|   │   │   ├── logging.py
+|   │   │   └── s3.py
+|   │   │
+|   │   ├── models/
+|   │   │   ├── onnx_loader.py
+|   │   │   └── inference.py
+|   │   │
+|   │   ├── schemas/
+|   │   │   ├── predict.py
+|   │   │   └── health.py
+|   │   │
+|   │   ├── utils/
+|   │   │   ├── preprocessing.py
+|   │   │   └── postprocessing.py
+|   │   │
+|   │   ├── main.py
+|   │   └── __init__.py
+|   │
+|   ├── tests/
+|   │   ├── test_predict.py
+|   │   ├── test_health.py
+|   │   └── test_inference.py
+|   │
+|   ├── Dockerfile
+|   ├── requirements.txt
+|   └── README.md
 │
 ├── frontend/
 │   └── README.md
@@ -78,6 +112,8 @@ driver-behaviour-classifier/
     - Training script completed
     - Trained 5 models, including 1 custom.
     - Created notebook to export MiniCNN model to ONNX and compare.
+    - Created FastAPI backend template
+    - Implemented backend pre- and postprocessing
 
 - **Blockers:** None.
 
