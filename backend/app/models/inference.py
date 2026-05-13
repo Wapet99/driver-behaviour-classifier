@@ -1,5 +1,5 @@
 from fastapi import HTTPException, status
-from app.models.onnx_loader import session
+import app.models.onnx_loader as onnx_loader
 from app.utils.preprocessing import preprocess_image
 from app.utils.postprocessing import postprocess_output
 from app.schemas.predict import PredictionResponse
@@ -12,7 +12,8 @@ async def run_inference(upload_file):
     - Postprocess outputs
     - Return PredictionResponse
     """
-
+    session = onnx_loader.session
+    # print("ONNX loader module id:", id(session))
     if session is None:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -33,5 +34,5 @@ async def run_inference(upload_file):
     
     # Convert raw outputs to label and confidence
     prediction = postprocess_output(outputs)
-    
+
     return PredictionResponse(**prediction)

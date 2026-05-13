@@ -28,6 +28,7 @@ This file serves as the persistent context for design decisions, architecture, a
     - Implemented FastAPI service structure.
     - Implemented preprocessing.py and postprocessing.py
     - Implemented onnx_loader.py and inference.py
+    - Fixed issue where inference.py importing session from onnx_loader created a new None variable, instead import onnx_loader and use `session = onnx_loader.session`
 - **Next Steps:**
     - Outline AWS deployment workflow.
     - Begin edge inference design.
@@ -115,6 +116,8 @@ driver-behaviour-classifier/
     - Created notebook to export MiniCNN model to ONNX and compare.
     - Created FastAPI backend template
     - Implemented backend pre- and postprocessing
+    - Implemented onnx_loader.py and inference.py
+    - Fixed issue where inference.py importing session from onnx_loader created a new None variable, instead import onnx_loader and use `session = onnx_loader.session`
 
 - **Blockers:** None.
 

@@ -36,6 +36,8 @@ async def load_model():
     global session
 
     model_path = settings.MODEL_LOCAL_PATH
+    # print("Loading model from:", model_path)
+    # print("Exists:", os.path.exists(model_path))
 
     if not os.path.exists(model_path):
         raise HTTPException(
@@ -44,4 +46,9 @@ async def load_model():
         )
     
     session = _create_session(model_path)
+    # print("Session created:", session is not None)
+    # print("Model inputs:", session.get_inputs())
+    # print("Input name:", session.get_inputs()[0].name)
+    # print("ONNX loader module id:", id(session))
+
     return session
