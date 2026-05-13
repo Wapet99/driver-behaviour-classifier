@@ -1,7 +1,10 @@
 import onnxruntime as ort
 from fastapi import HTTPException, status
-from app.core.config import settings
+from app.core.s3 import download_model_from_s3
+from app.core.logging import get_logger
 import os
+
+logger = get_logger(__name__)
 
 # Global ONNXRuntime session
 session = None
@@ -35,7 +38,7 @@ async def load_model():
     """
     global session
 
-    model_path = settings.MODEL_LOCAL_PATH
+    model_path = await download_model_from_s3()
     # print("Loading model from:", model_path)
     # print("Exists:", os.path.exists(model_path))
 
@@ -45,6 +48,7 @@ async def load_model():
             detail=f"Model file not found at {model_path}"
         )
     
+    logger.info(f"Loading ONNX model from {model_path}")
     session = _create_session(model_path)
     # print("Session created:", session is not None)
     # print("Model inputs:", session.get_inputs())

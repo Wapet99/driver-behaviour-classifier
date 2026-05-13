@@ -3,6 +3,9 @@ import app.models.onnx_loader as onnx_loader
 from app.utils.preprocessing import preprocess_image
 from app.utils.postprocessing import postprocess_output
 from app.schemas.predict import PredictionResponse
+from app.core.logging import get_logger
+
+logger = get_logger(__name__)
 
 async def run_inference(upload_file):
     """
@@ -22,10 +25,12 @@ async def run_inference(upload_file):
 
     # Preprocess image to numpy tensor
     image = await preprocess_image(upload_file)
+    logger.debug("Preprocessing complete")
 
     try:
         # ONNXRuntime inference
         outputs = session.run(None, {"input": image})
+        logger.debug("Inference completed")
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

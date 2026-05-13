@@ -1,0 +1,30 @@
+# Web Framework
+fastapi
+python-multipart
+uvicorn
+
+# Inference
+onnxruntime
+numpy
+Pillow
+
+# AWS
+boto3
+botocore
+
+# Config
+pydantic
+pydantic-settings
+python-dotenv
+
+# Logging
+logging
+#watchtower
+
+# Util
+requests
+
+# Testing
+pytest
+pytest-asyncio
+httpx

@@ -2,12 +2,14 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.api.v1.predict import router as predict_router
 from app.api.v1.health import router as health_router
-from app.core.logging import setup_logging
+from app.core.logging import configure_logging, get_logger
 from app.models.onnx_loader import load_model
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    setup_logging()
+    configure_logging()
+    logger = get_logger(__name__)
+    logger.info("FastAPI app starting")
     await load_model()
     yield
 

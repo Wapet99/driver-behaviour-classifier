@@ -29,6 +29,8 @@ This file serves as the persistent context for design decisions, architecture, a
     - Implemented preprocessing.py and postprocessing.py
     - Implemented onnx_loader.py and inference.py
     - Fixed issue where inference.py importing session from onnx_loader created a new None variable, instead import onnx_loader and use `session = onnx_loader.session`
+    - Updated logging and config to better prepare for AWS deployment.
+    - Implemented Dockerfile and requirements.txt, backend can now build and run through docker.
 - **Next Steps:**
     - Outline AWS deployment workflow.
     - Begin edge inference design.
@@ -118,11 +120,12 @@ driver-behaviour-classifier/
     - Implemented backend pre- and postprocessing
     - Implemented onnx_loader.py and inference.py
     - Fixed issue where inference.py importing session from onnx_loader created a new None variable, instead import onnx_loader and use `session = onnx_loader.session`
+    - Updated logging and config to better prepare for AWS deployment.
+    - Implemented Dockerfile and requirements.txt, backend can now build and run through docker.
 
 - **Blockers:** None.
 
 - **Evolving Decisions:**
 
     - Choice of edge device (Raspberry Pi vs simulated environment).
-    - Deployment strategy (Docker vs systemd).
-    - ONNX quantization approach (dynamic vs QAT).
+    - Design of frontend UI
