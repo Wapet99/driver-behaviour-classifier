@@ -53,12 +53,7 @@ Local dev uses dummy AWS credentials; EC2 uses IAM role.
 
 - **Current Task:** AWS infra and deployment
 - **Recent Changes:**
-    - Implemented FastAPI service structure.
-    - Implemented preprocessing.py and postprocessing.py
-    - Implemented onnx_loader.py and inference.py
-    - Fixed issue where inference.py importing session from onnx_loader created a new None variable, instead import onnx_loader and use `session = onnx_loader.session`
-    - Updated logging and config to better prepare for AWS deployment.
-    - Implemented Dockerfile and requirements.txt, backend can now build and run through docker.
+    - Created Terraform IaC infra template
 - **Next Steps:**
     - Outline AWS deployment workflow.
     - Begin edge inference design.
@@ -108,7 +103,28 @@ driver-behaviour-classifier/
 │   └── README.md
 │
 ├── infra/
-│   └── README.md
+|   ├── main.tf
+|   ├── variables.tf
+|   ├── outputs.tf
+|   ├── README.md
+|   │
+|   ├── modules/
+|   │   ├── network/
+|   │   │   ├── main.tf
+|   │   │   ├── variables.tf
+|   │   │   └── outputs.tf
+|   │   │
+|   │   ├── ecr/
+|   │   ├── ecs/
+|   │   ├── alb/
+|   │   ├── cloudwatch/
+|   │   └── iam/
+|   │
+|   └── envs/
+|       ├── dev/
+|       │   └── terraform.tfvars
+|       └── prod/
+|           └── terraform.tfvars
 │
 ├── model/
 │   ├── dataset.py
@@ -150,6 +166,7 @@ driver-behaviour-classifier/
     - Fixed issue where inference.py importing session from onnx_loader created a new None variable, instead import onnx_loader and use `session = onnx_loader.session`
     - Updated logging and config to better prepare for AWS deployment.
     - Implemented Dockerfile and requirements.txt, backend can now build and run through docker.
+    - Created Terraform IaC infra template
 
 - **Blockers:** None.
 
