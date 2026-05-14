@@ -13,7 +13,7 @@ This file serves as the persistent context for design decisions, architecture, a
 
     - **Model:** Model training pipeline producing PyTorch and ONNX artifacts. Lightweight PyTorch CNN or MobileNetV3 trained to classify driver actions.
     - **Backend:** FastAPI inference server with async endpoints, S3-hosted model weights, CloudWatch logging.
-    - **Infra:** AWS EC2 deployment using systemd or Docker + Nginx reverse proxy.
+    - **Infra:** Backend deployed as a Docker container on AWS ECS Fargate behind an ALB, with S3‑hosted model artifacts, IAM‑based access, CloudWatch Logs for JSON‑structured application logs, CloudWatch Metrics and Alarms for inference latency and error rates, and IaC (Terraform)
     - **Frontend:** Minimal React dashboard to upload images for real‑time inference.
     - **Edge:** Edge inference module using quantized ONNX model.
 
@@ -51,7 +51,7 @@ Local dev uses dummy AWS credentials; EC2 uses IAM role.
 
 ## Active Context
 
-- **Current Task:** EC2 deployment using docker + nginx
+- **Current Task:** AWS infra and deployment
 - **Recent Changes:**
     - Implemented FastAPI service structure.
     - Implemented preprocessing.py and postprocessing.py
@@ -155,8 +155,9 @@ driver-behaviour-classifier/
 
 - **Evolving Decisions:**
 
-    - Frontend deployment via S3/CloudFront or EC2
-    - Whether to use Docker Compose for EC2 Deployment
-    - Nginx or AWS ALB for reverse proxy
+    - Frontend React deployment via S3/CloudFront
+    - Containerised backend pushed to ECR
+    - ECS Fargate service + ALB defined via Terraform
+    - CloudWatch dashboard for inference latency
     - Choice of edge device (Raspberry Pi vs simulated environment).
     - Design of frontend UI
