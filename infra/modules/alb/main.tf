@@ -17,7 +17,7 @@ resource "aws_lb_target_group" "this" {
   target_type = "ip"
 
   health_check {
-    path = "/health"
+    path = "/api/v1/health"
   }
 }
 
