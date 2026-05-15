@@ -22,3 +22,6 @@ model/onnx/*
 *.pt
 *.ckpt
 *.onnx
+
+# Terraform files
+.terraform/
