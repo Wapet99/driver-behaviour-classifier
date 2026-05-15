@@ -56,7 +56,7 @@ resource "aws_ecs_service" "this" {
   network_configuration {
     subnets         = var.private_subnet_ids
     assign_public_ip = false
-    security_groups  = [] # add SGs later
+    security_groups  = [aws_security_group.ecs.id]
   }
 
   load_balancer {
@@ -64,8 +64,29 @@ resource "aws_ecs_service" "this" {
     container_name   = "backend"
     container_port   = var.container_port
   }
+}
 
-  lifecycle {
-    ignore_changes = [task_definition]
+resource "aws_security_group" "ecs" {
+  name        = "${var.project_name}-ecs-sg"
+  description = "ECS task security group"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    description     = "Allow ALB to reach ECS tasks"
+    from_port       = 8000
+    to_port         = 8000
+    protocol        = "tcp"
+    security_groups = [var.alb_security_group_id]
   }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+output "ecs_security_group_id" {
+  value = aws_security_group.ecs.id
 }

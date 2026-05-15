@@ -1,7 +1,8 @@
-resource "aws_cloudwatch_log_group" "app" {
-  name              = "/${var.project_name}/backend"
-  retention_in_days = 14
-}
+# remove to prevent overlap with ecs
+#resource "aws_cloudwatch_log_group" "app" {
+#  name              = "/${var.project_name}/backend"
+#  retention_in_days = 14
+#}
 
 # Example alarm skeleton – fill thresholds later
 resource "aws_cloudwatch_metric_alarm" "alb_5xx" {
