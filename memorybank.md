@@ -51,12 +51,13 @@ Local dev uses dummy AWS credentials; EC2 uses IAM role.
 
 ## Active Context
 
-- **Current Task:** AWS infra and deployment
+- **Current Task:** React Frontend
 - **Recent Changes:**
     - Created Terraform IaC infra template
+    - Implemented Terraform IaC for deployment to AWS
 - **Next Steps:**
-    - Outline AWS deployment workflow.
-    - Begin edge inference design.
+    - Frontend template design
+    - Frontend implementation
 
 ### Working directory
 ```
@@ -113,12 +114,26 @@ driver-behaviour-classifier/
 |   │   │   ├── main.tf
 |   │   │   ├── variables.tf
 |   │   │   └── outputs.tf
-|   │   │
 |   │   ├── ecr/
+|   │   │   ├── main.tf
+|   │   │   ├── variables.tf
+|   │   │   └── outputs.tf
 |   │   ├── ecs/
+|   │   │   ├── main.tf
+|   │   │   ├── variables.tf
+|   │   │   └── outputs.tf
 |   │   ├── alb/
+|   │   │   ├── main.tf
+|   │   │   ├── variables.tf
+|   │   │   └── outputs.tf
 |   │   ├── cloudwatch/
+|   │   │   ├── main.tf
+|   │   │   ├── variables.tf
+|   │   │   └── outputs.tf
 |   │   └── iam/
+|   │   │   ├── main.tf
+|   │   │   ├── variables.tf
+|   │   │   └── outputs.tf
 |   │
 |   └── envs/
 |       ├── dev/
@@ -167,14 +182,12 @@ driver-behaviour-classifier/
     - Updated logging and config to better prepare for AWS deployment.
     - Implemented Dockerfile and requirements.txt, backend can now build and run through docker.
     - Created Terraform IaC infra template
+    - Implemented Terraform IaC for deployment to AWS
 
 - **Blockers:** None.
 
 - **Evolving Decisions:**
 
-    - Frontend React deployment via S3/CloudFront
-    - Containerised backend pushed to ECR
-    - ECS Fargate service + ALB defined via Terraform
-    - CloudWatch dashboard for inference latency
+    - Frontend React deployment via S3/CloudFront or GitHub Pages
     - Choice of edge device (Raspberry Pi vs simulated environment).
     - Design of frontend UI
